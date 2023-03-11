@@ -46,9 +46,19 @@ router.route("/update/:id").put(async(req,res)=>{
         res.status(200).send({status:"user updated",user:update})
     }).catch((err)=>{
         console.log(err);
-        res.status(500).send({status:"Error with updating dsta"});
+        res.status(500).send({status:"Error with updating data",error: err.message});
     })
     
+    router.route("/delete/:id").delete(async(req,res)=>{
+        let userId = req.params.id;
+
+        await Supplier.findByIdAndDelete(userId).then(()=>{
+            res.status(200).send({status:"user deleted"})
+        }).catch((err)=>{
+            console.log(err.message);
+            res.status(500).send({status:"Error with delete user"})
+        })
+    })
 
 })
 
