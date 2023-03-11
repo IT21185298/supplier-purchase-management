@@ -35,6 +35,11 @@ connection.once("open", () => {
 //app.use('/user', user_routes)
 //app.use('/todo', todo_routes)
 
+const supplierRouter = require("./routes/Suppliers.js")
+
+
+app.use("/Supplier",supplierRouter);
+
 app.listen(PORT, () => {
   console.log(`Server is up and running at port ${PORT}`)
 })
