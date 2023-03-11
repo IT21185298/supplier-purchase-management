@@ -21,5 +21,15 @@ router.route("/add").post((req,res)=>{
     })
 })
 
+router.route("/").get((req,res)=>{
+
+    Supplier.find().then((Suppliers)=>{
+        res.json(Suppliers)
+    }).catch((err)=>{
+        console.log(err)
+    })
+
+})
+
 
 module.exports = router;
