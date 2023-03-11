@@ -30,6 +30,29 @@ router.route("/").get((req,res)=>{
     })
 
 })
+//http//localhost:8070/student/update
+
+router.route("/update/:id").put(async(req,res)=>{
+    let userId = req.params.id;
+    const {name,age,gender} = req.body;
+
+    const updateSuppliers = {
+        name,
+        age,
+        gender
+    }
+
+    const update = await Supplier.findByIdAndUpdate(userId,updateSuppliers).then(()=>{
+        res.status(200).send({status:"user updated",user:update})
+    }).catch((err)=>{
+        console.log(err);
+        res.status(500).send({status:"Error with updating dsta"});
+    })
+    
+
+})
+
+router.route("/")
 
 
 module.exports = router;
